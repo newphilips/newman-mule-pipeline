@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
+	<flow name="timezone_api-Flow" doc:id="967a01a0-ed66-4d7d-8b34-3421d5e3df01" >
+		<http:listener doc:name="Listener" doc:id="5a31581f-6501-433c-a6e2-401f225cf9da" path="${http.endpoint}" config-ref="HTTP_Listener_config"/>
+		<logger level="INFO" doc:name="Logger" doc:id="028e7fe5-03e9-45f2-9dba-d5a3699e0134" message="timezone_api-Flow started with uriParams: #[attributes.uriParams.'region'] and #[attributes.uriParams.'city']"/>
+		<http:request method="GET" doc:name="Request" doc:id="328b9ace-216f-47f3-8d8a-6d2ca33db3cb" path="${request.path}" config-ref="HTTP_Request_configuration">
+			<http:uri-params ><![CDATA[#[{
+	"region": attributes.uriParams.'region',
+	"city": attributes.uriParams.'city'
+}]]]></http:uri-params>
+		</http:request>
+		<logger level="INFO" doc:name="Logger" doc:id="adbca51d-fd10-4c09-a458-fa86727aa97b" message="payload after request to api: #[payload]"/>
+		<ee:transform doc:name="Transform Message" doc:id="c9cc6437-ad87-4757-a4f8-880c823249d0" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+{
+	"date-time": payload.'datetime'
+}]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+	</flow>
+</mule>
