@@ -27,7 +27,7 @@
 				<configuration>
 				<cloudHubDeployment>
 				<username>yahoozi_a</username>
-				<enviornment>Sandbox</enviornment>
+				<environment>Sandbox</environment>
 				<workers>1</workers>
 				<workerType>Micro</workerType>
 				<applicationName>sample-timezone-api</applicationName>
