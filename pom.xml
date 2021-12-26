@@ -23,6 +23,11 @@
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-clean-plugin</artifactId>
 				<version>3.0.0</version>
+			</plugin>
+			<plugin>
+				<groupId>org.mule.tools.maven</groupId>
+				<artifactId>mule-maven-plugin</artifactId>
+				<version>${mule.maven.plugin.version}</version>
 				<extensions>true</extensions>
 				<configuration>
 				<cloudHubDeployment>
@@ -35,12 +40,6 @@
 				<muleVersion>4.4.0</muleVersion>
 				</cloudHubDeployment>
 				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.mule.tools.maven</groupId>
-				<artifactId>mule-maven-plugin</artifactId>
-				<version>${mule.maven.plugin.version}</version>
-				<extensions>true</extensions>
 			</plugin>
 		</plugins>
 	</build>
