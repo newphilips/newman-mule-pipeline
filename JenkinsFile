@@ -1,0 +1,20 @@
+pipeline
+{
+	agent any
+	stages{
+		stage('Build Application'){
+			steps{
+				bat 'mvn clean install'
+			}
+		}
+		stage('Deploy Application to Mulesoft Cloudhub'){
+			steps{
+				bat 'mvn package deploy -DmuleDeploy'
+			}
+		}
+		stage('Perform regression testing'){
+			steps{
+				bat'cd C:\\Users\\Lenovo\\AppData\\Roaming\\npm run E:\\newman\\timezone-api.postman_collection.json -r htmlextra --reporter-htmlextra-export .results\\report.html --reporter-htmlextra-darkTheme'
+			}
+		}
+}
