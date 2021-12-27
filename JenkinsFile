@@ -17,4 +17,5 @@ pipeline
 				bat'cd C:\\Users\\Lenovo\\AppData\\Roaming\\npm run E:\\newman\\timezone-api.postman_collection.json -r htmlextra --reporter-htmlextra-export .results\\report.html --reporter-htmlextra-darkTheme'
 			}
 		}
+	}
 }
